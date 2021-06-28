@@ -41,7 +41,7 @@
                     <div id="search-user" @click="search">
                         <i class="fas fa-search"></i>
                     </div>
-                    <input id="search-chat" v-model="cerca" type="text" placeholder="Cerca una nuova chat" @keyup.enter="search">
+                    <input id="search-chat" v-model="cerca" type="text" placeholder="Cerca una nuova chat" @keyup.enter="search" @keyup.delete="lunghezza">
                 </div>
                 <div class="container-chat">
                     <div class="chat" v-if="contact.visible == true" v-for="(contact,index) in contacts" @click="chatta(contact)">

@@ -59,18 +59,21 @@ const app = new Vue(
                 document.getElementById('user-foto').src = contact.avatar;
             },
             search(){
+
                 for (let i = 0; i < this.contacts.length;i++) {
-                    this.contacts[1].visible = false;
-                    console.log(this.contacts[i].visible);
+                    this.contacts[i].visible = false;
                     if(this.cerca == this.contacts[i].name || this.cerca == this.contacts[i].name.toLowerCase()) {
-                        console.log(this.contacts[i].visible);
+                        this.contacts[i].visible = true;
+                    } 
+                }
+            },
+            lunghezza() {
+                if(this.cerca.length == 0) {
+                    for(let i = 0;i < this.contacts.length; i++) {
                         this.contacts[i].visible = true;
                     }
-                    
                 }
-
             }
-
-        }
+            }   
     });
 
