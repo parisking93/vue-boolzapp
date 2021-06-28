@@ -3,3 +3,21 @@
     padding: 0;
     box-sizing: border-box;
 }
+.container {
+    height: 100vh;
+    position: relative;
+}
+.barra {
+    height: 20%;
+    background-color: #009688;
+}
+main {
+    width: 70%;
+    height: 90%;
+    min-width: 900px;
+    background-color: yellow;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
