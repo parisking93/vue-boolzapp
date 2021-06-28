@@ -3,6 +3,7 @@ const app = new Vue(
         el :'#app',
 
         data : {
+            cerca : '',
             contacts: 
                 [  
                     {       
@@ -56,7 +57,20 @@ const app = new Vue(
             chatta(contact){
                 document.getElementById('chat-name').innerHTML = contact.name;
                 document.getElementById('user-foto').src = contact.avatar;
+            },
+            search(){
+                for (let i = 0; i < this.contacts.length;i++) {
+                    this.contacts[1].visible = false;
+                    console.log(this.contacts[i].visible);
+                    if(this.cerca == this.contacts[i].name || this.cerca == this.contacts[i].name.toLowerCase()) {
+                        console.log(this.contacts[i].visible);
+                        this.contacts[i].visible = true;
+                    }
+                    
+                }
+
             }
+
         }
     });
 

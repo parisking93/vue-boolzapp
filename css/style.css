@@ -98,6 +98,14 @@ header .container-icon-user i, .container-icon-chat i{
     padding: 5px 10px;
     height: auto;
     background-color: #fafafa;
+    display: flex;
+    align-items: center;
+}
+.container-search #search-user {
+    height: 25px;
+    padding: 5px 10px;
+    background-color: white;
+    margin-right: 5px;
 }
 .container-search input{
     width: 100%;
@@ -188,6 +196,6 @@ main .col-dx header {
 /* FINE MAIN  */
 
 /* HOVER  */
-main i, .container-bell, .chat {
+main i, .container-bell, .chat, .container-search {
     cursor: pointer;
 }
