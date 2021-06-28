@@ -13,6 +13,7 @@ main header {
 .container {
     height: 100vh;
     position: relative;
+    background-color: #d7dbd6;
 }
 .barra {
     height: 20%;
@@ -20,10 +21,9 @@ main header {
 }
 /* MAIN  */
 main {
-    width: 70%;
-    height: 90%;
+    width: 80%;
     min-width: 900px;
-    background-color: yellow;
+    height: 90%;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -32,38 +32,38 @@ main {
 }
 /* colonna sinistra  */
 main .col-sx {
-    width: 40%;
+    width: 400px;
     height: 100%;
-    background-color: yellowgreen;
     display: flex;
     flex-direction: column;
 }
 /* header colonna sinistra  */
-main .col-sx header {
+main .col-sx header{
     border-right: 1px solid #b1b1b1;
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
-}
-header .container-user{
-    width: 50%;
-}
-header .container-icon-user{
-    display: flex;
-    align-items: center;
-}
-header .container-icon-user i {
-    margin: 0 5px;
-    color: #b1b1b1;
 }
 .container-user img {
     height: 100%;
     border-radius: 50%;
     vertical-align: middle;
 }
-.container-user .user-name, .chat .chat-name{
+.container-user .user-name,.chat-name{
     text-transform: capitalize;margin-left: 5px;
 }
+header .container-user{
+    width: 50%;
+}
+header .container-icon-user, .container-icon-chat{
+    display: flex;
+    align-items: center;
+}
+header .container-icon-user i, .container-icon-chat i{
+    margin: 0 5px;
+    color: #b1b1b1;
+}
+
 /* fine header colonna sinistra  */
 .container-notifiche {
     height: 80px;
@@ -73,6 +73,7 @@ header .container-icon-user i {
 .container-search {
     padding: 5px 10px;
     height: auto;
+    background-color: #fafafa;
 }
 .container-search input{
     width: 100%;
@@ -82,7 +83,7 @@ header .container-icon-user i {
 }
 .container-chat {
     flex-grow: 1;
-    background-color: yellow;
+    background-color:white
 }
 .container-chat .chat {
     width: 100%;
@@ -99,9 +100,61 @@ header .container-icon-user i {
 /* fine colonna sinistra  */
 /* colonna di destra  */
 main .col-dx {
-    width: 60%;
     height: 100%;
-    background-color: blue;
+    width: calc(100% - 400px);
 }
+.col-dx  .container-col-dx {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+/* header colonna destra  */
+main .col-dx header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+.container-user-chat {
+    width: 50%;
+    display: flex;
+}
+.container-user-chat img {
+    height: 100%;
+    border-radius: 50%;
+}
+.container-user-chat-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 5px;
+}
+.access {
+    margin-left: 5px;
+}
+/* fine header colonna destra  */
+.col-dx .container-user-messages {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+.messages {
+    flex-grow: 1;
+    background-image: url(../img/mine.jpg);
+    overflow: scroll;
+}
+.container-user-messages {
+    
+    background-color: #f3eee9;
+}
+.container-user-messages input {
+    margin: 0 10px;
+    flex-grow: 1;
+    height: 100%;
+    padding: 0 10px;
+}.container-user-messages i {
+    font-size: 18px;
+}
+/* fine header colonna di destra  */
 /* fine colonna di destra */
 /* FINE MAIN  */
