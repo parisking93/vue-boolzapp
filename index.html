@@ -7,11 +7,41 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="container">
         <div class="barra"></div>
-        <main></main>
+        <main>
+            <div class="col-sx">
+                <header>
+                    <div class="container-user">
+                        <img src="img/avatar_8.jpg" alt="avatar user">
+                        <span class="user-name">nome utente</span>
+                    </div>
+                    <div class="container-icon-user">
+                        <i class="fas fa-circle-notch"></i>
+                        <i class="fas fa-comment-alt"></i>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                </header>
+                <div class="container-notifiche">
+                </div>
+                <div class="container-search">
+                    <input type="text" placeholder="Cerca una nuova chat">
+                </div>
+                <div class="container-chat">
+                    <div class="chat">
+                        <img src="img/avatar_8.jpg" alt="chat avatar">
+                        <span class="chat-name">nome utente</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-dx">
+                <header></header>
+            </div>
+        </main>
     </div>
     <script src="js/script.js"></script>
 </body>
