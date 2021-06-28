@@ -53,11 +53,40 @@ const app = new Vue(
 
                 ]
         },
+        mounted() {
+            // inserisco i messaggi del primo utente 
+            for(let i = 0;i < this.contacts[0].messages.length;i++) {
+            
+                if (this.contacts[0].messages[i].status == 'sent') {
+                    document.getElementById('container-messaggi').innerHTML += `
+                    <div class="messaggi green"> ${this.contacts[0].messages[i].text}</div>
+                    `
+                } else {
+                    document.getElementById('container-messaggi').innerHTML += `
+                    <div class="messaggi gray"> ${this.contacts[0].messages[i].text}</div>
+                    `
+                }
+            }
+        },
         methods : {
+            // clicco e prendo la chat 
             chatta(contact){
                 document.getElementById('chat-name').innerHTML = contact.name;
                 document.getElementById('user-foto').src = contact.avatar;
+                document.getElementById('container-messaggi').innerHTML = '';
+                for(let i = 0;i < contact.messages.length;i++) {
+                    if (contact.messages[i].status == 'sent') {
+                        document.getElementById('container-messaggi').innerHTML += `
+                        <div class="messaggi green"> ${contact.messages[i].text}</div>
+                        `
+                    } else {
+                        document.getElementById('container-messaggi').innerHTML += `
+                        <div class="messaggi gray"> ${contact.messages[i].text}</div>
+                        `
+                    }
+                }
             },
+            // cerco se ci sono le chat cercate 
             search(){
 
                 for (let i = 0; i < this.contacts.length;i++) {
@@ -67,6 +96,7 @@ const app = new Vue(
                     } 
                 }
             },
+            // controllo la lunghezza dell'input e se vuoto mostro tutte le chat 
             lunghezza() {
                 if(this.cerca.length == 0) {
                     for(let i = 0;i < this.contacts.length; i++) {
@@ -74,6 +104,7 @@ const app = new Vue(
                     }
                 }
             }
-            }   
+
+        }  
     });
 
