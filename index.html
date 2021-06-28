@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,700&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="app">
         <div class="barra"></div>
         <main>
             <div class="col-sx">
@@ -26,26 +29,32 @@
                     </div>
                 </header>
                 <div class="container-notifiche">
+                    <div class="container-bell">
+                        <i class="fas fa-bell-slash"></i>
+                    </div>
+                    <div>
+                        <h4>Ricevi notifiche di nuovi messaggi</h4>
+                        <a class="link-notifiche" href="#">Attiva notifiche di desktop</a>
+                    </div>
                 </div>
                 <div class="container-search">
                     <input type="text" placeholder="Cerca una nuova chat">
                 </div>
                 <div class="container-chat">
-                    <div class="chat">
-                        <img src="img/avatar_8.jpg" alt="chat avatar">
-                        <span class="chat-name">nome</span>
+                    <div class="chat" v-for="(contact,index) in contacts" @click="chatta(contact)">
+                        <img :src="contact.avatar" alt="chat avatar">
+                        <span class="chat-name">{{contact.name}}</span>
                     </div>
-
                 </div>
             </div>
             <div class="col-dx">
                 <div class="container-col-dx">
                     <header>
                         <div class="container-user-chat">
-                            <img src="img/avatar_8.jpg" alt="avatar user">
+                            <img id="user-foto" :src="contacts[0].avatar" alt="avatar user">
                             <div class="container-user-chat-name">
-                                <span class="chat-name">nome</span>
-                                <p class="access">nome</p>
+                                <span id="chat-name">{{contacts[0].name}}</span>
+                                <p class="access">ultimo accesso oggi alle</p>
                             </div>
                         </div>
                         <div class="container-icon-chat">
