@@ -17,6 +17,7 @@
         <div class="barra"></div>
         <main>
             <div class="col-sx">
+                <!-- dati utente  -->
                 <header>
                     <div class="container-user">
                         <img src="img/avatar_8.jpg" alt="avatar user">
@@ -28,6 +29,7 @@
                         <i class="fas fa-ellipsis-v"></i>
                     </div>
                 </header>
+                <!-- notifiche  -->
                 <div class="container-notifiche">
                     <div class="container-bell">
                         <i class="fas fa-bell-slash"></i>
@@ -37,6 +39,7 @@
                         <a class="link-notifiche" href="#">Attiva notifiche di desktop</a>
                     </div>
                 </div>
+                <!-- barra cerca e chat  -->
                 <div class="container-search">
                     <div id="search-user">
                         <i class="fas fa-search"></i>
@@ -44,7 +47,7 @@
                     <input id="search-chat" v-model="cerca" type="text" placeholder="Cerca una nuova chat" @keyup.delete="lunghezza" @keyup="controlValue">
                 </div>
                 <div class="container-chat">
-                    <div class="chat" v-if="contact.visible == true" v-for="(contact,index) in contacts" @click="chatta(contact,index)">
+                    <div class="chat" v-if="contact.visible == true" v-for="(contact,index) in contacts" @click="chatta(index)">
                         <img :src="contact.avatar" alt="chat avatar">
                         <span class="chat-name">{{contact.name}}</span>
                     </div>
@@ -55,10 +58,10 @@
                 <div class="container-col-dx">
                     <header>
                         <div class="container-user-chat">
-                            <img id="user-foto" :src="contacts[0].avatar" alt="avatar user">
+                            <img id="user-foto" :src="contacts[index].avatar" :alt="contacts[index].name">
                             <div class="container-user-chat-name">
-                                <span id="chat-name">{{contacts[0].name}}</span>
-                                <p class="access">ultimo accesso oggi alle <span id="last-access">{{contacts[0].messages[2].date.slice(10)}}</span> </p>
+                                <span id="chat-name">{{contacts[index].name}}</span>
+                                <p class="access">ultimo accesso oggi alle <span id="last-access">{{contacts[index].messages[2].date.slice(10)}}</span> </p>
                             </div>
                         </div>
                         <div class="container-icon-chat">
@@ -69,7 +72,7 @@
                     </header>
                     <!-- parte centrale conversazioni  -->
                     <div class="messages" id="container-messaggi" >
-                        <div class="messaggi" :class="(messaggi.status == 'sent') ? 'green' : 'white' " v-for="(messaggi,index) in contacts[0].messages">
+                        <div class="messaggi" :class="(messaggi.status == 'sent') ? 'green' : 'white' " v-for="(messaggi) in contacts[index].messages">
                             {{messaggi.text}}
                             <div class="data">
                                 {{messaggi.date}}
@@ -79,7 +82,7 @@
                     <!-- input messaggi -->
                     <div class="container-user-messages">
                         <i class="far fa-smile"></i>
-                        <input type="text" placeholder="Invia un messaggio">
+                        <input type="text" placeholder="Invia un messaggio" v-model="mex" @keyup.enter="inviaMessaggio()">
                         <i class="fas fa-microphone"></i>
                     </div>
                 </div>

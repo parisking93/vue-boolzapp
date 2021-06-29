@@ -188,7 +188,7 @@ main .col-dx header {
     overflow: auto;
     display: flex;
     flex-direction: column;
-    padding: 20px 50px;
+    padding: 0 50px;
 }
 .messages .messaggi {
     width: 200px;

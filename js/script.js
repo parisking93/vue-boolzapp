@@ -5,6 +5,8 @@ const app = new Vue(
         data : {
             cerca : '',
             parolaSearch:'',
+            mex : '',
+            index : 0,
             contacts: 
                 [  
                     {       
@@ -23,7 +25,9 @@ const app = new Vue(
                                 text: 'Ricordati di dargli da mangiare',                status: 'sent'            
                             },
                             {                
-                                date: '10/01/2020 16:15:22',                text: 'Tutto fatto!',                status: 'received'            
+                                date: '10/01/2020 16:15:22',                
+                                text: 'Tutto fatto!',                
+                                status: 'received'            
                             },
                         ],    
                     },
@@ -53,46 +57,14 @@ const app = new Vue(
                     }
 
                 ]
-        },
+        },  
         methods : {
-            // clicco e prendo la chat 
-            chatta(contact){
-                const data = contact.messages[contact.messages.length - 1].date.slice(10);
-                document.getElementById('chat-name').innerHTML = contact.name;
-                document.getElementById('user-foto').src = contact.avatar;
-                document.getElementById('last-access').innerHTML = ' ' + data;
-                document.getElementById('container-messaggi').innerHTML = '';
-                for(let i = 0;i < contact.messages.length;i++) {
-                    if (contact.messages[i].status == 'sent') {
-                        document.getElementById('container-messaggi').innerHTML += `
-                        <div class="messaggi green"> 
-                            ${contact.messages[i].text}
-                            <div class="data">${contact.messages[i].date} </div>
-                        </div>
-                        `
-                    } else {
-                        document.getElementById('container-messaggi').innerHTML += `
-                        <div class="messaggi white"> 
-                            ${contact.messages[i].text}
-                            <div class="data">${contact.messages[i].date} </div>
-                        </div>
-                        `
-                    }
-                }
-            },
-            // controllo la lunghezza dell'input e se vuoto mostro tutte le chat 
-            lunghezza() {
-                if(this.cerca.length == 0) {
-                    for(let i = 0;i < this.contacts.length; i++) {
-                        this.contacts[i].visible = true;
-                    }
-                }
-            },
+            // controllo quello che scrive nell'iput di ricerca e cerco 
             controlValue(){
-                let valoreSearch = document.getElementById('search-chat').value;
+                let valoreSearch = this.cerca;
                 let valoreCapitalize = valoreSearch.charAt(0).toUpperCase() + valoreSearch.slice(1).toLowerCase();
 
-                if(valoreSearch.length > 2) {
+                if(valoreSearch.length > 1) {
                     this.contacts.forEach((element) => {
                         element.visible = false;
                         if(element.name.includes(valoreSearch) || element.name.includes(valoreCapitalize)) {
@@ -109,6 +81,27 @@ const app = new Vue(
                     });
                 }
                 
+            },
+            // clicco e prendo l'indice della elemento cosi da prendere la chat 
+            chatta(indice){
+                this.index = indice;
+            },
+            // controllo la lunghezza dell'input e se vuoto mostro tutte le chat 
+            lunghezza() {
+                if(this.cerca.length == 0) {
+                    for(let i = 0;i < this.contacts.length; i++) {
+                        this.contacts[i].visible = true;
+                    }
+                }
+            },
+            inviaMessaggio() {
+                this.contacts[this.index].messages.push({
+                    date: '20/03/2020 16:30:00',                
+                    text: this.mex,                
+                    status: 'sent'
+                })
+                this.mex = '';
+
             }
 
         }  
