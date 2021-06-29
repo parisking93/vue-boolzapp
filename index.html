@@ -38,13 +38,13 @@
                     </div>
                 </div>
                 <div class="container-search">
-                    <div id="search-user" @click="search">
+                    <div id="search-user">
                         <i class="fas fa-search"></i>
                     </div>
-                    <input id="search-chat" v-model="cerca" type="text" placeholder="Cerca una nuova chat" @keyup.enter="search" @keyup.delete="lunghezza">
+                    <input id="search-chat" v-model="cerca" type="text" placeholder="Cerca una nuova chat" @keyup.delete="lunghezza" @keyup="controlValue">
                 </div>
                 <div class="container-chat">
-                    <div class="chat" v-if="contact.visible == true" v-for="(contact,index) in contacts" @click="chatta(contact)">
+                    <div class="chat" v-if="contact.visible == true" v-for="(contact,index) in contacts" @click="chatta(contact,index)">
                         <img :src="contact.avatar" alt="chat avatar">
                         <span class="chat-name">{{contact.name}}</span>
                     </div>
@@ -58,7 +58,7 @@
                             <img id="user-foto" :src="contacts[0].avatar" alt="avatar user">
                             <div class="container-user-chat-name">
                                 <span id="chat-name">{{contacts[0].name}}</span>
-                                <p class="access">ultimo accesso oggi alle</p>
+                                <p class="access">ultimo accesso oggi alle <span id="last-access">{{contacts[0].messages[2].date.slice(10)}}</span> </p>
                             </div>
                         </div>
                         <div class="container-icon-chat">
@@ -68,7 +68,13 @@
                         </div>
                     </header>
                     <!-- parte centrale conversazioni  -->
-                    <div class="messages" id="container-messaggi">
+                    <div class="messages" id="container-messaggi" >
+                        <div class="messaggi" :class="(messaggi.status == 'sent') ? 'green' : 'white' " v-for="(messaggi,index) in contacts[0].messages">
+                            {{messaggi.text}}
+                            <div class="data">
+                                {{messaggi.date}}
+                            </div>
+                        </div>
                     </div>
                     <!-- input messaggi -->
                     <div class="container-user-messages">

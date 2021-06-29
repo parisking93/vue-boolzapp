@@ -4,6 +4,7 @@ const app = new Vue(
 
         data : {
             cerca : '',
+            parolaSearch:'',
             contacts: 
                 [  
                     {       
@@ -53,32 +54,13 @@ const app = new Vue(
 
                 ]
         },
-        mounted() {
-            // inserisco i messaggi del primo utente 
-            for(let i = 0;i < this.contacts[0].messages.length;i++) {
-            
-                if (this.contacts[0].messages[i].status == 'sent') {
-                    document.getElementById('container-messaggi').innerHTML += `
-                    <div class="messaggi green">
-                        ${this.contacts[0].messages[i].text}
-                        <div class="data">${this.contacts[0].messages[i].date} </div>
-                     </div>
-                    `
-                } else {
-                    document.getElementById('container-messaggi').innerHTML += `
-                    <div class="messaggi white"> 
-                        ${this.contacts[0].messages[i].text}
-                        <div class="data">${this.contacts[0].messages[i].date} </div>
-                    </div>
-                    `
-                }
-            }
-        },
         methods : {
             // clicco e prendo la chat 
             chatta(contact){
+                const data = contact.messages[contact.messages.length - 1].date.slice(10);
                 document.getElementById('chat-name').innerHTML = contact.name;
                 document.getElementById('user-foto').src = contact.avatar;
+                document.getElementById('last-access').innerHTML = ' ' + data;
                 document.getElementById('container-messaggi').innerHTML = '';
                 for(let i = 0;i < contact.messages.length;i++) {
                     if (contact.messages[i].status == 'sent') {
@@ -98,16 +80,6 @@ const app = new Vue(
                     }
                 }
             },
-            // cerco se ci sono le chat cercate 
-            search(){
-
-                for (let i = 0; i < this.contacts.length;i++) {
-                    this.contacts[i].visible = false;
-                    if(this.cerca == this.contacts[i].name || this.cerca == this.contacts[i].name.toLowerCase()) {
-                        this.contacts[i].visible = true;
-                    } 
-                }
-            },
             // controllo la lunghezza dell'input e se vuoto mostro tutte le chat 
             lunghezza() {
                 if(this.cerca.length == 0) {
@@ -115,6 +87,28 @@ const app = new Vue(
                         this.contacts[i].visible = true;
                     }
                 }
+            },
+            controlValue(){
+                let valoreSearch = document.getElementById('search-chat').value;
+                let valoreCapitalize = valoreSearch.charAt(0).toUpperCase() + valoreSearch.slice(1).toLowerCase();
+
+                if(valoreSearch.length > 2) {
+                    this.contacts.forEach((element) => {
+                        element.visible = false;
+                        if(element.name.includes(valoreSearch) || element.name.includes(valoreCapitalize)) {
+                            element.visible = true;
+                        } else {
+                            element.messages.forEach((messaggio)=> {
+                                if(messaggio.text.includes(valoreSearch) || messaggio.text.includes(valoreCapitalize)){
+                                    element.visible = true
+                                }
+                            })
+                            
+                        }
+    
+                    });
+                }
+                
             }
 
         }  

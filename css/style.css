@@ -200,6 +200,7 @@ main .col-dx header {
     color: #80868a;
     font-size: 12px;
     text-align: right;
+    margin-top: 2px;
 }
 .container-user-messages {
     background-color: #f3eee9;
