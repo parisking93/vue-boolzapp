@@ -59,11 +59,17 @@ const app = new Vue(
             
                 if (this.contacts[0].messages[i].status == 'sent') {
                     document.getElementById('container-messaggi').innerHTML += `
-                    <div class="messaggi green"> ${this.contacts[0].messages[i].text}</div>
+                    <div class="messaggi green">
+                        ${this.contacts[0].messages[i].text}
+                        <div class="data">${this.contacts[0].messages[i].date} </div>
+                     </div>
                     `
                 } else {
                     document.getElementById('container-messaggi').innerHTML += `
-                    <div class="messaggi gray"> ${this.contacts[0].messages[i].text}</div>
+                    <div class="messaggi white"> 
+                        ${this.contacts[0].messages[i].text}
+                        <div class="data">${this.contacts[0].messages[i].date} </div>
+                    </div>
                     `
                 }
             }
@@ -77,11 +83,17 @@ const app = new Vue(
                 for(let i = 0;i < contact.messages.length;i++) {
                     if (contact.messages[i].status == 'sent') {
                         document.getElementById('container-messaggi').innerHTML += `
-                        <div class="messaggi green"> ${contact.messages[i].text}</div>
+                        <div class="messaggi green"> 
+                            ${contact.messages[i].text}
+                            <div class="data">${contact.messages[i].date} </div>
+                        </div>
                         `
                     } else {
                         document.getElementById('container-messaggi').innerHTML += `
-                        <div class="messaggi gray"> ${contact.messages[i].text}</div>
+                        <div class="messaggi white"> 
+                            ${contact.messages[i].text}
+                            <div class="data">${contact.messages[i].date} </div>
+                        </div>
                         `
                     }
                 }

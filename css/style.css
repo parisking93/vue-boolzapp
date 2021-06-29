@@ -7,10 +7,9 @@
 }
 input {
     border:1px solid lightgray;
-    border-radius: 5px;
 }
 main header {
-    height: 60px;
+    height: 70px;
     width: 100%;
     background-color: #eaeaea;
 }
@@ -18,8 +17,8 @@ main header {
     background-color: lightgreen;
     align-self: flex-end;
 }
-.gray {
-    background-color: lightgrey;
+.white {
+    background-color: white;
 }
 /* FINE COMMONS  */
 .container {
@@ -79,7 +78,7 @@ header .container-icon-user i, .container-icon-chat i{
 /* fine header colonna sinistra  */
 /* notifiche  */
 .container-notifiche {
-    height: 60px;
+    height: 80px;
     width: 100%;
     background-color: #8edafb;
     display: flex;
@@ -109,16 +108,20 @@ header .container-icon-user i, .container-icon-chat i{
     align-items: center;
 }
 .container-search #search-user {
-    height: 25px;
+    height: 30px;
     padding: 5px 10px;
     background-color: white;
-    margin-right: 5px;
+    margin-right: 1px;
+    border-radius: 5px 0 0 5px;
+
 }
 .container-search input{
     width: 100%;
-    height: 25px;
+    height: 30px;
     line-height: 25px;
     padding: 0 20px;
+    border:none;
+    border-radius: 0px 5px 5px 0;
 }
 .container-chat {
     flex-grow: 1;
@@ -185,12 +188,18 @@ main .col-dx header {
     overflow: auto;
     display: flex;
     flex-direction: column;
+    padding: 20px 50px;
 }
 .messages .messaggi {
-    width: 150px;
+    width: 200px;
     border-radius: 10px;
     margin: 10px 20px;
     padding: 10px;
+}
+.data {
+    color: #80868a;
+    font-size: 12px;
+    text-align: right;
 }
 .container-user-messages {
     background-color: #f3eee9;
@@ -198,9 +207,12 @@ main .col-dx header {
 .container-user-messages input {
     margin: 0 10px;
     flex-grow: 1;
-    height: 30px;
+    height: 40px;
     padding: 0 10px;
-}.container-user-messages i {
+    border-radius: 5px;
+
+}
+.container-user-messages i {
     font-size: 18px;
     color: #80868a;
 }
