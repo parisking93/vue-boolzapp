@@ -9,7 +9,6 @@ const app = new Vue(
             index : 0,
             counter : 0,
             answer : ['ciao','come stai?','no','si'],
-            check : ' fas fa-check-double',
 
             contacts: 
                 [  
@@ -23,13 +22,15 @@ const app = new Vue(
                                 date: '10/01/2020 15:30:55',
                                 text: 'Hai portato a spasso il cane?',
                                 status: 'sent',
-                                checked : 'blue',            
+                                colorChecked : 'blue',
+                                check : ' fas fa-check-double'            
                             },
                             {                
                                 date: '10/01/2020 15:50:00',
                                 text: 'Ricordati di dargli da mangiare',                
                                 status: 'sent',
-                                checked : 'blue',            
+                                colorChecked : 'blue',
+                                check : ' fas fa-check-double'            
                             },
                             {                
                                 date: '10/01/2020 16:15:22',                
@@ -49,7 +50,8 @@ const app = new Vue(
                                     date: '20/03/2020 16:30:00',                
                                     text: 'Ciao come stai',                
                                     status: 'sent',
-                                    checked : 'blue',
+                                    colorChecked : 'blue',
+                                    check : ' fas fa-check-double'
                                 },            
                                 {                
                                     date: '20/03/2020 16:30:55',                
@@ -60,7 +62,8 @@ const app = new Vue(
                                     date: '20/03/2020 16:35:00',                
                                     text: 'Mi piacerebbe ma devo andare a fare la spesa.',                
                                     status: 'sent',
-                                    checked : 'blue',            
+                                    colorChecked : 'blue',
+                                    check : ' fas fa-check-double'            
                                 }
                             ],
                     }
@@ -107,18 +110,19 @@ const app = new Vue(
             },
             inviaMessaggio() {
                 let tempo = this.prendiTempo();
-                this.check = ' fas fa-check';
+                // thischeck = ' fas fa-check';
                 this.contacts[this.index].messages.push({
                     date: tempo[0] + ':' + tempo[1] + ':' + tempo[2],                
                     text: this.mex,                
                     status: 'sent',
-                    checked: ''
+                    colorChecked: '',
+                    check : ' fas fa-check'
                 });
                 this.mex = '';
                 setTimeout(()=>{
-                    this.check = ' fas fa-check-double';
                     let messaggiLength = this.contacts[this.index].messages.length;
-                    this.contacts[this.index].messages[messaggiLength - 1].checked = 'blue';
+                    this.contacts[this.index].messages[messaggiLength - 1].check = ' fas fa-check-double';
+                    this.contacts[this.index].messages[messaggiLength - 1].colorChecked = 'blue';
                     console.log(messaggiLength);
                 },1000);
 

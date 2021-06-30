@@ -77,7 +77,7 @@
                             <div class="data">
                                 {{messaggi.date}}
                                 <template v-if="(messaggi.status == 'sent')">
-                                    <i :class="messaggi.checked + check"></i>
+                                    <i :class="messaggi.colorChecked + messaggi.check"></i>
                                 </template>
                             </div>
                         </div>
