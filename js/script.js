@@ -3,10 +3,14 @@ const app = new Vue(
         el :'#app',
 
         data : {
+            ore : (dayjs().hour() < 10) ? "0"+ dayjs().hour(): dayjs().hour(),
+            minuti : (dayjs().minute() < 10) ? "0"+ dayjs().minute(): dayjs().minute(),
+            secondi : (dayjs().second() < 10) ? "0"+ dayjs().second(): dayjs().second(),
             cerca : '',
             parolaSearch:'',
             mex : '',
             index : 0,
+            answer : ['ciao','come stai?','no','si'],
             contacts: 
                 [  
                     {       
@@ -22,7 +26,8 @@ const app = new Vue(
                             },
                             {                
                                 date: '10/01/2020 15:50:00',
-                                text: 'Ricordati di dargli da mangiare',                status: 'sent'            
+                                text: 'Ricordati di dargli da mangiare',                
+                                status: 'sent'            
                             },
                             {                
                                 date: '10/01/2020 16:15:22',                
@@ -85,6 +90,8 @@ const app = new Vue(
             // clicco e prendo l'indice della elemento cosi da prendere la chat 
             chatta(indice){
                 this.index = indice;
+                 let lunghezzaMessaggi =this.contacts[indice].messages.length;
+                 console.log(lunghezzaMessaggi);
             },
             // controllo la lunghezza dell'input e se vuoto mostro tutte le chat 
             lunghezza() {
@@ -96,11 +103,22 @@ const app = new Vue(
             },
             inviaMessaggio() {
                 this.contacts[this.index].messages.push({
-                    date: '20/03/2020 16:30:00',                
+                    date: this.ore + ':' + this.minuti + ':' + this.secondi,                
                     text: this.mex,                
                     status: 'sent'
-                })
+                });
                 this.mex = '';
+                
+
+                setTimeout(()=>{
+                    console.log(this.answer.length);
+                    let numRand = Math.floor(Math.random() * this.answer.length);
+                    this.contacts[this.index].messages.push({
+                        date: this.ore + ':' + this.minuti + ':' + this.secondi,                
+                        text: this.answer[numRand],                
+                        status: 'received'
+                    });
+                },2000)
 
             }
 

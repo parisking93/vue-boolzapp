@@ -61,7 +61,7 @@
                             <img id="user-foto" :src="contacts[index].avatar" :alt="contacts[index].name">
                             <div class="container-user-chat-name">
                                 <span id="chat-name">{{contacts[index].name}}</span>
-                                <p class="access">ultimo accesso oggi alle <span id="last-access">{{contacts[index].messages[2].date.slice(10)}}</span> </p>
+                                <p class="access">ultimo accesso oggi alle <span id="last-access" v-if="contacts[index].messages[contacts[index].messages.length -1].date.length > 10">{{contacts[index].messages[contacts[index].messages.length -1].date.slice(10)}}</span> <span v-else>{{contacts[index].messages[contacts[index].messages.length -1].date}}</span></p>
                             </div>
                         </div>
                         <div class="container-icon-chat">
@@ -89,6 +89,7 @@
             </div>
         </main>
     </div>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
