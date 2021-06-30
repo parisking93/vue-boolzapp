@@ -71,7 +71,7 @@
                         </div>
                     </header>
                     <!-- parte centrale conversazioni  -->
-                    <div class="messages" id="container-messaggi" @scroll="scrolla" >
+                    <div class="messages" id="container-messaggi">
                         <div class="messaggi" :class="(messaggi.status == 'sent') ? 'green' : 'white' " v-for="(messaggi) in contacts[index].messages">
                             {{messaggi.text}}
                             <div class="data">
