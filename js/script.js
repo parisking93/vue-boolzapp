@@ -9,6 +9,10 @@ const app = new Vue(
             index : 0,
             counter : 0,
             answer : ['ciao','come stai?','no','si'],
+            utente : {
+                name: 'Emmanuel', 
+                avatar: './../img/avatar_8.jpg'
+            },
 
             contacts: 
                 [  
@@ -66,7 +70,88 @@ const app = new Vue(
                                     check : ' fas fa-check-double'            
                                 }
                             ],
-                    }
+                    },
+                    {       
+                        name: 'Marco', 
+                        avatar: './../img/avatar_3.jpg',
+                        visible: true,
+                        messages: 
+                        [            
+                            {                
+                                date: '11/01/2020 15:30:40',
+                                text: 'che fai?',
+                                status: 'received',
+         
+                            },
+                            {                
+                                date: '11/01/2020 15:50:00',
+                                text: 'niente te?',                
+                                status: 'sent',
+                                colorChecked : 'blue',
+                                check : ' fas fa-check-double'            
+                            },
+                            {                
+                                date: '11/01/2020 16:15:22',                
+                                text: 'tante belle cose!',                
+                                status: 'received'            
+                            },
+                        ],    
+                    },
+                    {       
+                        name: 'Martina', 
+                        avatar: './../img/avatar_6.jpg',
+                        visible: true,
+                        messages: 
+                        [            
+                            {                
+                                date: '10/01/2020 15:30:55',
+                                text: 'ti ho visto ieri',
+                                status: 'sent',
+                                colorChecked : 'blue',
+                                check : ' fas fa-check-double'            
+                            },
+                            {                
+                                date: '10/01/2020 15:50:00',
+                                text: 'dove',                
+                                status: 'received',
+          
+                            },
+                            {                
+                                date: '10/01/2020 16:15:22',                
+                                text: 'a barcellona!',                
+                                status: 'sent',
+                                colorChecked : 'blue',
+                                check : ' fas fa-check-double'              
+                            },
+                        ],    
+                    },
+                    {       
+                        name: 'Gaia', 
+                        avatar: './../img/avatar_7.jpg',
+                        visible: true,
+                        messages: 
+                        [            
+                            {                
+                                date: '10/01/2020 15:30:55',
+                                text: 'usciamo?',
+                                status: 'sent',
+           
+                            },
+                            {                
+                                date: '10/01/2020 15:34:00',
+                                text: 'no',                
+                                status: 'receeived',
+          
+                            },
+                            {                
+                                date: '16/01/2020 26:11:22',                
+                                text: 'va bene!',                
+                                status: 'sent',
+                                colorChecked : 'blue',
+                                check : ' fas fa-check-double'             
+                            },
+                        ],    
+                    },
 
                 ]
         },  
@@ -76,22 +161,22 @@ const app = new Vue(
                 let valoreSearch = this.cerca;
                 let valoreCapitalize = valoreSearch.charAt(0).toUpperCase() + valoreSearch.slice(1).toLowerCase();
 
-                if(valoreSearch.length > 1) {
-                    this.contacts.forEach((element) => {
-                        element.visible = false;
-                        if(element.name.includes(valoreSearch) || element.name.includes(valoreCapitalize)) {
-                            element.visible = true;
-                        } else {
-                            element.messages.forEach((messaggio)=> {
-                                if(messaggio.text.includes(valoreSearch) || messaggio.text.includes(valoreCapitalize)){
-                                    element.visible = true
-                                }
-                            })
-                            
-                        }
-    
-                    });
-                }
+                
+                this.contacts.forEach((element) => {
+                    element.visible = false;
+                    if(element.name.includes(valoreSearch) || element.name.includes(valoreCapitalize)) {
+                        element.visible = true;
+                    }// } else {
+                    //     element.messages.forEach((messaggio)=> {
+                    //         if(messaggio.text.includes(valoreSearch) || messaggio.text.includes(valoreCapitalize)){
+                    //             element.visible = true
+                    //         }
+                    //     })
+                        
+                    // }
+
+                });
+                
                 
             },
             // clicco e prendo l'indice della elemento cosi da prendere la chat 
@@ -110,7 +195,7 @@ const app = new Vue(
             },
             inviaMessaggio() {
                 let tempo = this.prendiTempo();
-                // thischeck = ' fas fa-check';
+
                 this.contacts[this.index].messages.push({
                     date: tempo[0] + ':' + tempo[1] + ':' + tempo[2],                
                     text: this.mex,                
@@ -123,7 +208,6 @@ const app = new Vue(
                     let messaggiLength = this.contacts[this.index].messages.length;
                     this.contacts[this.index].messages[messaggiLength - 1].check = ' fas fa-check-double';
                     this.contacts[this.index].messages[messaggiLength - 1].colorChecked = 'blue';
-                    console.log(messaggiLength);
                 },1000);
 
                 setTimeout(()=>{
