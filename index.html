@@ -55,7 +55,7 @@
             </div>
             <div class="col-dx">
                 <!-- colonna di destra  -->
-                <div class="container-col-dx">
+                <div class="container-col-dx" id="col-dx-container">
                     <header>
                         <div class="container-user-chat">
                             <img id="user-foto" :src="contacts[index].avatar" :alt="contacts[index].name">
@@ -71,7 +71,7 @@
                         </div>
                     </header>
                     <!-- parte centrale conversazioni  -->
-                    <div class="messages" id="container-messaggi" >
+                    <div class="messages" id="container-messaggi" @scroll="scrolla" >
                         <div class="messaggi" :class="(messaggi.status == 'sent') ? 'green' : 'white' " v-for="(messaggi) in contacts[index].messages">
                             {{messaggi.text}}
                             <div class="data">

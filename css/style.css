@@ -186,7 +186,8 @@ main .col-dx header {
     padding: 10px 20px;
 }
 .messages {
-    flex-grow: 1;
+    /* flex-grow: 1; */
+    height: calc(100% - 60px - 70px);
     background-image: url(../img/mine.jpg);
     overflow: auto;
     display: flex;

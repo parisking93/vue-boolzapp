@@ -9,6 +9,8 @@ const app = new Vue(
             index : 0,
             counter : 0,
             answer : ['ciao','come stai?','no','si'],
+            scrolled : false,
+            incrementoScroll : 60,
             utente : {
                 name: 'Emmanuel', 
                 avatar: './../img/avatar_8.jpg'
@@ -154,6 +156,9 @@ const app = new Vue(
                     },
 
                 ]
+        },
+        mounted() {
+            this.scrollFunction()
         },  
         methods : {
             // controllo quello che scrive nell'iput di ricerca e cerco 
@@ -194,7 +199,17 @@ const app = new Vue(
                 }
             },
             inviaMessaggio() {
+                
                 let tempo = this.prendiTempo();
+                // if (!this.scrolled) {
+                //     const scrollDown = setInterval(() => {
+                //         let altezza = myElement.clientHeight;
+                //         myElement.scrollTop = altezza + this.incrementoScroll;
+                //         this.incrementoScroll += 60;
+                //     }, 500);
+                // } 
+
+        
 
                 this.contacts[this.index].messages.push({
                     date: tempo[0] + ':' + tempo[1] + ':' + tempo[2],                
@@ -204,7 +219,9 @@ const app = new Vue(
                     check : ' fas fa-check'
                 });
                 this.mex = '';
+
                 setTimeout(()=>{
+
                     let messaggiLength = this.contacts[this.index].messages.length;
                     this.contacts[this.index].messages[messaggiLength - 1].check = ' fas fa-check-double';
                     this.contacts[this.index].messages[messaggiLength - 1].colorChecked = 'blue';
@@ -219,10 +236,7 @@ const app = new Vue(
                         status: 'received'
                     });
                 },2000);
-
-
-
-
+                this.scrolled = false;
             },
             prendiTempo() {
                 this.ore = (dayjs().hour() < 10) ? "0"+ dayjs().hour(): dayjs().hour();
@@ -230,8 +244,23 @@ const app = new Vue(
                 this.secondi = (dayjs().second() < 10) ? "0"+ dayjs().second(): dayjs().second();
 
                 return [this.ore,this.minuti,this.secondi]
+            },
+            scrollFunction() {
+                if (!this.scrolled) {
+                const myElement = document.getElementById('container-messaggi');
+                    const scrollDown = setInterval(() => {
+                        let altezza = myElement.clientHeight;
+                        myElement.scrollTop = altezza + this.incrementoScroll;
+                        this.incrementoScroll += 60;
+                    }, 500);
+                } else {
+                    clearInterval(scrollDown);
+                }
+            },
+            scrolla(event) {
+                console.log(event);
+                this.scrolled = true;
             }
-
-        }  
+        }
     });
 
