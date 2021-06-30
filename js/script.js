@@ -10,6 +10,7 @@ const app = new Vue(
             counter : 0,
             answer : ['ciao','come stai?','no','si'],
             incrementoScroll : 60,
+            info : false,
             utente : {
                 name: 'Emmanuel', 
                 avatar: './../img/avatar_8.jpg'
@@ -28,19 +29,22 @@ const app = new Vue(
                                 text: 'Hai portato a spasso il cane?',
                                 status: 'sent',
                                 colorChecked : 'blue',
-                                check : ' fas fa-check-double'            
+                                check : ' fas fa-check-double',
+                                openOption : 'false'            
                             },
                             {                
                                 date: '10/01/2020 15:50:00',
                                 text: 'Ricordati di dargli da mangiare',                
                                 status: 'sent',
                                 colorChecked : 'blue',
-                                check : ' fas fa-check-double'            
+                                check : ' fas fa-check-double',
+                                openOption : 'false'            
                             },
                             {                
                                 date: '10/01/2020 16:15:22',                
                                 text: 'Tutto fatto!',                
-                                status: 'received'            
+                                status: 'received',
+                                openOption : 'false'            
                             },
                         ],    
                     },
@@ -56,19 +60,22 @@ const app = new Vue(
                                     text: 'Ciao come stai',                
                                     status: 'sent',
                                     colorChecked : 'blue',
-                                    check : ' fas fa-check-double'
+                                    check : ' fas fa-check-double',
+                                    openOption : 'false'
                                 },            
                                 {                
                                     date: '20/03/2020 16:30:55',                
                                     text: 'Bene grazie! Stasera ci vediamo?',                
-                                    status: 'received'            
+                                    status: 'received',
+                                    openOption : 'false'            
                                 },            
                                 {                
                                     date: '20/03/2020 16:35:00',                
                                     text: 'Mi piacerebbe ma devo andare a fare la spesa.',                
                                     status: 'sent',
                                     colorChecked : 'blue',
-                                    check : ' fas fa-check-double'            
+                                    check : ' fas fa-check-double',
+                                    openOption : 'false'            
                                 }
                             ],
                     },
@@ -82,6 +89,7 @@ const app = new Vue(
                                 date: '11/01/2020 15:30:40',
                                 text: 'che fai?',
                                 status: 'received',
+                                openOption : 'false'
          
                             },
                             {                
@@ -89,12 +97,15 @@ const app = new Vue(
                                 text: 'niente te?',                
                                 status: 'sent',
                                 colorChecked : 'blue',
-                                check : ' fas fa-check-double'            
+                                check : ' fas fa-check-double',
+                                openOption : 'false'            
                             },
                             {                
                                 date: '11/01/2020 16:15:22',                
                                 text: 'tante belle cose!',                
-                                status: 'received'            
+                                status: 'received',
+                                openOption : 'false'
+                        
                             },
                         ],    
                     },
@@ -109,12 +120,14 @@ const app = new Vue(
                                 text: 'ti ho visto ieri',
                                 status: 'sent',
                                 colorChecked : 'blue',
-                                check : ' fas fa-check-double'            
+                                check : ' fas fa-check-double',
+                                openOption : 'false'            
                             },
                             {                
                                 date: '10/01/2020 15:50:00',
                                 text: 'dove',                
                                 status: 'received',
+                                openOption : 'false',
           
                             },
                             {                
@@ -122,7 +135,8 @@ const app = new Vue(
                                 text: 'a barcellona!',                
                                 status: 'sent',
                                 colorChecked : 'blue',
-                                check : ' fas fa-check-double'              
+                                check : ' fas fa-check-double',
+                                openOption : 'false'              
                             },
                         ],    
                     },
@@ -136,12 +150,14 @@ const app = new Vue(
                                 date: '10/01/2020 15:30:55',
                                 text: 'usciamo?',
                                 status: 'sent',
+                                openOption : 'false'
            
                             },
                             {                
                                 date: '10/01/2020 15:34:00',
                                 text: 'no',                
                                 status: 'receeived',
+                                openOption : 'false'
           
                             },
                             {                
@@ -149,7 +165,8 @@ const app = new Vue(
                                 text: 'va bene!',                
                                 status: 'sent',
                                 colorChecked : 'blue',
-                                check : ' fas fa-check-double'             
+                                check : ' fas fa-check-double',
+                                openOption : 'false'             
                             },
                         ],    
                     },
@@ -203,7 +220,9 @@ const app = new Vue(
                     text: this.mex,                
                     status: 'sent',
                     colorChecked: '',
-                    check : ' fas fa-check'
+                    check : ' fas fa-check',
+                    openOption : 'false'              
+
                 });
                 this.mex = '';
                 setTimeout(()=>{
@@ -223,7 +242,8 @@ const app = new Vue(
                     this.contacts[this.index].messages.push({
                         date: tempo[0] + ':' + tempo[1] + ':' + tempo[2],                
                         text: this.answer[numRand],                
-                        status: 'received'
+                        status: 'received',
+                        openOption : 'false'              
                     });
                 },2000);
                 // scrollo la funzione all'ultimo messaggio ricevuto
@@ -247,6 +267,26 @@ const app = new Vue(
                 myElement.scrollTop = altezza + this.incrementoScroll;
                 this.incrementoScroll += 60;
             },
+            opzioniMessaggio(messaggi,indice){
+                this.hidePopup()
+                this.contacts[this.index].messages[indice].openOption = true;
+                if(indice == this.contacts[this.index].messages.length - 1 ){
+                    setTimeout(this.scrollFunction, 100);
+                }
+            },
+            hidePopup(){
+                this.contacts[this.index].messages.forEach((element) => {
+                    element.openOption = false;
+                })
+                this.info = false;
+            },
+            cancella(indice){
+                this.contacts[this.index].messages.splice(indice,1); 
+            },
+            getInfo(indice) {
+                this.info = true;
+            }
+            
         }
     });
 

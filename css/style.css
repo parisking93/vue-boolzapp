@@ -23,6 +23,9 @@ main header {
 .blue {
     color:#6cb2c6
 }
+.none {
+    display: none;
+}
 /* FINE COMMONS  */
 .container {
     height: 100vh;
@@ -63,7 +66,7 @@ main .col-sx header{
     border-radius: 50%;
     vertical-align: middle;
 }
-.container-user .user-name, #chat-name{
+.container-user .user-name{
     text-transform: capitalize;margin-left: 5px;
 }
 header .container-user{
@@ -136,6 +139,21 @@ header .container-icon-user i, .container-icon-chat i{
     height: 80px;
     padding: 10px 20px;
     border-bottom: 1px solid #eaeaea;
+    display: flex;
+    align-items: center;
+}
+.container_nome {
+    width: 80%;
+    margin-left: 5px;
+}
+.chat-name{
+    font-weight: 700;
+}
+.last-message {
+    height: 16.5px;
+    font-size: 14px;
+    color: #8d9296;
+    overflow: hidden;
 }
 .container-chat .chat img{
     height: 100%;
@@ -199,6 +217,24 @@ main .col-dx header {
     border-radius: 10px;
     margin: 10px 20px;
     padding: 10px;
+    position: relative;
+}
+.blocco_opzioni {
+    top: 90%;
+    left: 0;
+    position: absolute;
+    background-color: rgb(245, 241, 241);
+    width: 200px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    z-index: 1;
+}
+.lista_message {
+    list-style: none;
+}
+.lista_message li {
+    margin: 10px 0;
+    padding: 5px 20px;
 }
 .data {
     color: #80868a;
@@ -227,4 +263,8 @@ main .col-dx header {
 /* HOVER  */
 main i, .container-bell, .chat, .container-search {
     cursor: pointer;
+}
+.lista_message li:hover{
+    cursor: pointer;
+    background-color: rgb(236, 233, 233);
 }

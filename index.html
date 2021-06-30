@@ -49,7 +49,11 @@
                 <div class="container-chat">
                     <div class="chat" v-if="contact.visible == true" v-for="(contact,index) in contacts" @click="chatta(index)">
                         <img :src="contact.avatar" :alt="contact.name">
-                        <span class="chat-name">{{contact.name}}</span>
+                        <div class="container_nome">
+                            <span class="chat-name">{{contact.name}}</span>
+                            <p class="last-message">{{contact.messages[contact.messages.length - 1].text}}</p>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,14 +75,26 @@
                         </div>
                     </header>
                     <!-- parte centrale conversazioni  -->
-                    <div class="messages" id="container-messaggi">
-                        <div class="messaggi" :class="(messaggi.status == 'sent') ? 'green' : 'white' " v-for="(messaggi) in contacts[index].messages">
+                    <div class="messages" id="container-messaggi" @click.stop="hidePopup" >
+                        <div class="messaggi" :class="(messaggi.status == 'sent') ? 'green' : 'white' " v-for="(messaggi,indice) in contacts[index].messages" @click.stop="opzioniMessaggio(messaggi,indice)">
                             {{messaggi.text}}
                             <div class="data">
                                 {{messaggi.date}}
                                 <template v-if="(messaggi.status == 'sent')">
                                     <i :class="messaggi.colorChecked + messaggi.check"></i>
                                 </template>
+
+                            </div>
+                            <div :class="(messaggi.openOption == true) ?  'blocco_opzioni' : 'none' ">
+                                <ul v-if="(!info)" class="lista_message" >
+                                    <li @click.stop="getInfo(indice)">Info Message </li>
+                                    <li @click.stop="cancella(indice)">Delete Message</li>
+                                </ul>
+                                <ul v-else class="lista_message">
+                                    <li>ora del messaggio: {{messaggi.date}}</li>
+                                    <li>stato:   {{messaggi.status}}</li>
+                                </ul>
+                                    
                             </div>
                         </div>
                     </div>
