@@ -3,14 +3,14 @@ const app = new Vue(
         el :'#app',
 
         data : {
-            ore : (dayjs().hour() < 10) ? "0"+ dayjs().hour(): dayjs().hour(),
-            minuti : (dayjs().minute() < 10) ? "0"+ dayjs().minute(): dayjs().minute(),
-            secondi : (dayjs().second() < 10) ? "0"+ dayjs().second(): dayjs().second(),
             cerca : '',
             parolaSearch:'',
             mex : '',
             index : 0,
+            counter : 0,
             answer : ['ciao','come stai?','no','si'],
+            check : ' fas fa-check-double',
+
             contacts: 
                 [  
                     {       
@@ -22,12 +22,14 @@ const app = new Vue(
                             {                
                                 date: '10/01/2020 15:30:55',
                                 text: 'Hai portato a spasso il cane?',
-                                status: 'sent'            
+                                status: 'sent',
+                                checked : 'blue',            
                             },
                             {                
                                 date: '10/01/2020 15:50:00',
                                 text: 'Ricordati di dargli da mangiare',                
-                                status: 'sent'            
+                                status: 'sent',
+                                checked : 'blue',            
                             },
                             {                
                                 date: '10/01/2020 16:15:22',                
@@ -46,7 +48,8 @@ const app = new Vue(
                                 {                
                                     date: '20/03/2020 16:30:00',                
                                     text: 'Ciao come stai',                
-                                    status: 'sent'
+                                    status: 'sent',
+                                    checked : 'blue',
                                 },            
                                 {                
                                     date: '20/03/2020 16:30:55',                
@@ -56,7 +59,8 @@ const app = new Vue(
                                 {                
                                     date: '20/03/2020 16:35:00',                
                                     text: 'Mi piacerebbe ma devo andare a fare la spesa.',                
-                                    status: 'sent'            
+                                    status: 'sent',
+                                    checked : 'blue',            
                                 }
                             ],
                     }
@@ -102,24 +106,42 @@ const app = new Vue(
                 }
             },
             inviaMessaggio() {
+                let tempo = this.prendiTempo();
+                this.check = ' fas fa-check';
                 this.contacts[this.index].messages.push({
-                    date: this.ore + ':' + this.minuti + ':' + this.secondi,                
+                    date: tempo[0] + ':' + tempo[1] + ':' + tempo[2],                
                     text: this.mex,                
-                    status: 'sent'
+                    status: 'sent',
+                    checked: ''
                 });
                 this.mex = '';
-                
+                setTimeout(()=>{
+                    this.check = ' fas fa-check-double';
+                    let messaggiLength = this.contacts[this.index].messages.length;
+                    this.contacts[this.index].messages[messaggiLength - 1].checked = 'blue';
+                    console.log(messaggiLength);
+                },1000);
 
                 setTimeout(()=>{
-                    console.log(this.answer.length);
+                    tempo = this.prendiTempo();
                     let numRand = Math.floor(Math.random() * this.answer.length);
                     this.contacts[this.index].messages.push({
-                        date: this.ore + ':' + this.minuti + ':' + this.secondi,                
+                        date: tempo[0] + ':' + tempo[1] + ':' + tempo[2],                
                         text: this.answer[numRand],                
                         status: 'received'
                     });
-                },2000)
+                },2000);
 
+
+
+
+            },
+            prendiTempo() {
+                this.ore = (dayjs().hour() < 10) ? "0"+ dayjs().hour(): dayjs().hour();
+                this.minuti = (dayjs().minute() < 10) ? "0"+ dayjs().minute(): dayjs().minute();
+                this.secondi = (dayjs().second() < 10) ? "0"+ dayjs().second(): dayjs().second();
+
+                return [this.ore,this.minuti,this.secondi]
             }
 
         }  

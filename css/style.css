@@ -20,6 +20,9 @@ main header {
 .white {
     background-color: white;
 }
+.blue {
+    color:#6cb2c6
+}
 /* FINE COMMONS  */
 .container {
     height: 100vh;
