@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet"> 
 </head>
 <body>
     <div class="container" id="app">
@@ -20,7 +20,7 @@
                 <!-- dati utente  -->
                 <header>
                     <div class="container-user">
-                        <img :src="utente.avatar" :alt="utente.name">
+                        <img class="shadow" :src="utente.avatar" :alt="utente.name">
                         <span class="user-name">{{utente.name}}</span>
                     </div>
                     <div class="container-icon-user">
@@ -48,7 +48,7 @@
                 </div>
                 <div class="container-chat">
                     <div class="chat" v-if="contact.visible == true" v-for="(contact,index) in contacts" @click="chatta(index)">
-                        <img :src="contact.avatar" :alt="contact.name">
+                        <img class="shadow" :src="contact.avatar" :alt="contact.name">
                         <div class="container_nome">
                             <span class="chat-name">{{contact.name}}</span>
                             <p class="last-message">{{contact.messages[contact.messages.length - 1].text}}</p>
@@ -62,7 +62,7 @@
                 <div class="container-col-dx" id="col-dx-container">
                     <header>
                         <div class="container-user-chat">
-                            <img id="user-foto" :src="contacts[index].avatar" :alt="contacts[index].name">
+                            <img class="shadow" id="user-foto" :src="contacts[index].avatar" :alt="contacts[index].name">
                             <div class="container-user-chat-name">
                                 <span id="chat-name-now">{{contacts[index].name}}</span>
                                 <template v-if="typing">
@@ -119,14 +119,13 @@
                     </div>
                     <!-- input messaggi -->
                     <div class="container-user-messages">
-                        <div @click="openEmoji">
+                        <div class="container-smile" @click="openEmoji">
                             <i class="chiudi far fa-smile"></i>
-                            <div class="block-emoji">
-                                <div @click.stop ="emojInsert(numero)" class="container-emoji" v-for ="(emojii,numero) in emoji">
-                                    <span>{{emojii}}</span>
-                                </div>
+                        </div>
+                        <div class="block-emoji">
+                            <div @click.stop ="emojInsert(numero)" class="container-emoji" v-for ="(emojii,numero) in emoji">
+                                <span>{{emojii}}</span>
                             </div>
-
                         </div>
                         <input type="text" id="insert-field" placeholder="Invia un messaggio" v-model="mex" @keyup.enter="inviaMessaggio()">
                         <div>

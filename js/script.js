@@ -221,6 +221,7 @@ const app = new Vue(
             chatta(indice){
                 this.index = indice;
                  let lunghezzaMessaggi =this.contacts[indice].messages.length;
+                 this.chiudiBlockEmoji()
                  document.getElementById('insert-field').focus();
             },
             // controllo la lunghezza dell'input e se vuoto mostro tutte le chat 
@@ -298,6 +299,7 @@ const app = new Vue(
                 if(indice == this.contacts[this.index].messages.length - 1 ){
                     setTimeout(this.scrollFunction, 100);
                 }
+                this.chiudiBlockEmoji()
             },
             hidePopup(){
                 this.contacts[this.index].messages.forEach((element) => {
@@ -308,6 +310,7 @@ const app = new Vue(
                 setTimeout(()=>{
                     document.querySelector('.block-emoji').style.display = "none";
                 },100);
+                this.chiudiBlockEmoji()
             },
             cancella(indice){
                 this.contacts[this.index].messages.splice(indice,1); 
@@ -330,6 +333,9 @@ const app = new Vue(
             emojInsert(indice) {
                 this.mex += this.emoji[indice];
                 document.getElementById('insert-field').focus();
+                this.chiudiBlockEmoji()
+            },
+            chiudiBlockEmoji(){
                 setTimeout(()=>{
                     document.querySelector('.block-emoji').style.display = "none";
                 },100);
