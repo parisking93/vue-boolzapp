@@ -142,7 +142,16 @@ header .container-icon-user i, .container-icon-chat i{
     border-bottom: 1px solid #eaeaea;
     display: flex;
     align-items: center;
+    position: relative;
 }
+.container-chat .chat .data-last-message{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: #8d9296;
+    font-size: 12px;
+}
+
 .container_nome {
     width: 80%;
     margin-left: 5px;
