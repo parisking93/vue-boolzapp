@@ -64,8 +64,17 @@
                         <div class="container-user-chat">
                             <img id="user-foto" :src="contacts[index].avatar" :alt="contacts[index].name">
                             <div class="container-user-chat-name">
-                                <span id="chat-name">{{contacts[index].name}}</span>
-                                <p class="access">ultimo accesso oggi alle <span id="last-access" v-if="contacts[index].messages[contacts[index].messages.length -1].date.length > 10">{{contacts[index].messages[contacts[index].messages.length -1].date.slice(10)}}</span> <span v-else>{{contacts[index].messages[contacts[index].messages.length -1].date}}</span></p>
+                                <span id="chat-name-now">{{contacts[index].name}}</span>
+                                <template v-if="contacts[index].messages[contacts[index].messages.length -1].date.length == 19">
+                                    <p class="access" >ultimo accesso oggi alle 
+                                        <span id="last-access"  >{{contacts[index].messages[contacts[index].messages.length -1].date.slice(10)}}</span>
+                                    </p>
+                                </template>
+                                <template v-else>
+                                    <p class="access" >ultimo accesso 
+                                        <span>{{contacts[index].messages[contacts[index].messages.length -1].date}}</span>
+                                    </p>
+                                </template>
                             </div>
                         </div>
                         <div class="container-icon-chat">

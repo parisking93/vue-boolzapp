@@ -66,11 +66,12 @@ main .col-sx header{
     border-radius: 50%;
     vertical-align: middle;
 }
-.container-user .user-name{
+.container-user .user-name, #chat-name-now{
     text-transform: capitalize;margin-left: 5px;
 }
 header .container-user{
     width: 50%;
+    height: 100%;
 }
 header .container-icon-user, .container-icon-chat{
     display: flex;

@@ -13,14 +13,14 @@ const app = new Vue(
             info : false,
             utente : {
                 name: 'Emmanuel', 
-                avatar: './../img/avatar_8.jpg'
+                avatar: 'img/avatar_8.jpg'
             },
 
             contacts: 
                 [  
                     {       
                         name: 'Michele', 
-                        avatar: './../img/avatar_1.jpg',
+                        avatar: 'img/avatar_1.jpg',
                         visible: true,
                         messages: 
                         [            
@@ -51,7 +51,7 @@ const app = new Vue(
                 
                     {        
                         name: 'Fabio',        
-                        avatar: './../img/avatar_2.jpg',        
+                        avatar: 'img/avatar_2.jpg',        
                         visible: true,        
                         messages: 
                             [            
@@ -81,7 +81,7 @@ const app = new Vue(
                     },
                     {       
                         name: 'Marco', 
-                        avatar: './../img/avatar_3.jpg',
+                        avatar: 'img/avatar_3.jpg',
                         visible: true,
                         messages: 
                         [            
@@ -111,7 +111,7 @@ const app = new Vue(
                     },
                     {       
                         name: 'Martina', 
-                        avatar: './../img/avatar_6.jpg',
+                        avatar: 'img/avatar_6.jpg',
                         visible: true,
                         messages: 
                         [            
@@ -142,7 +142,7 @@ const app = new Vue(
                     },
                     {       
                         name: 'Gaia', 
-                        avatar: './../img/avatar_7.jpg',
+                        avatar: 'img/avatar_7.jpg',
                         visible: true,
                         messages: 
                         [            
@@ -212,45 +212,49 @@ const app = new Vue(
                 }
             },
             inviaMessaggio() {
+                if(this.mex) {
+                    // let tempo = this.prendiTempo();
 
-                let tempo = this.prendiTempo();
-
-                this.contacts[this.index].messages.push({
-                    date: tempo[0] + ':' + tempo[1] + ':' + tempo[2],                
-                    text: this.mex,                
-                    status: 'sent',
-                    colorChecked: '',
-                    check : ' fas fa-check',
-                    openOption : 'false'              
-
-                });
-                this.mex = '';
-                setTimeout(()=>{
-                    let messaggiLength = this.contacts[this.index].messages.length;
-                    this.contacts[this.index].messages[messaggiLength - 1].check = ' fas fa-check-double';
-                    this.contacts[this.index].messages[messaggiLength - 1].colorChecked = 'blue';
-
-                },1000);
-                // scrollo la funzione all'ultimo mio messaggio 
-                setTimeout(() => {
-                    this.scrollFunction();
-                }, 600);
-
-                setTimeout(()=>{
-                    tempo = this.prendiTempo();
-                    let numRand = Math.floor(Math.random() * this.answer.length);
                     this.contacts[this.index].messages.push({
-                        date: tempo[0] + ':' + tempo[1] + ':' + tempo[2],                
-                        text: this.answer[numRand],                
-                        status: 'received',
+                        date: "Oggi " + dayjs().format("HH:mm:ss"),                
+                        text: this.mex,                
+                        status: 'sent',
+                        colorChecked: '',
+                        check : ' fas fa-check',
                         openOption : 'false'              
-                    });
-                },2000);
-                // scrollo la funzione all'ultimo messaggio ricevuto
 
-                setTimeout(() => {
-                    this.scrollFunction();
-                }, 2200);
+                    });
+                    this.mex = '';
+
+                
+                
+                    setTimeout(()=>{
+                        let messaggiLength = this.contacts[this.index].messages.length;
+                        this.contacts[this.index].messages[messaggiLength - 1].check = ' fas fa-check-double';
+                        this.contacts[this.index].messages[messaggiLength - 1].colorChecked = 'blue';
+
+                    },1000);
+                    // scrollo la funzione all'ultimo mio messaggio 
+                    setTimeout(() => {
+                        this.scrollFunction();
+                    }, 600);
+
+                    setTimeout(()=>{
+                        // tempo = this.prendiTempo();
+                        let numRand = Math.floor(Math.random() * this.answer.length);
+                        this.contacts[this.index].messages.push({
+                            date: "Oggi " + dayjs().format("HH:mm:ss"),                
+                            text: this.answer[numRand],                
+                            status: 'received',
+                            openOption : 'false'              
+                        });
+                    },2000);
+                    // scrollo la funzione all'ultimo messaggio ricevuto
+
+                    setTimeout(() => {
+                        this.scrollFunction();
+                    }, 2200);
+                }
 
             },
             prendiTempo() {
@@ -261,7 +265,6 @@ const app = new Vue(
                 return [this.ore,this.minuti,this.secondi]
             },
             scrollFunction() {
-                
                 const myElement = document.getElementById("container-messaggi");
                 let altezza = myElement.clientHeight;
                 myElement.scrollTop = altezza + this.incrementoScroll;
