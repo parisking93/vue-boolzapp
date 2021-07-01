@@ -7,7 +7,6 @@ const app = new Vue(
             parolaSearch:'',
             mex : '',
             index : 0,
-            counter : 0,
             answer : ['ciao','come stai?','no','si'],
             incrementoScroll : 60,
             info : false,
@@ -31,7 +30,9 @@ const app = new Vue(
                                 status: 'sent',
                                 colorChecked : 'blue',
                                 check : ' fas fa-check-double',
-                                openOption : 'false'            
+                                openOption : 'false',
+                                show : false
+
                             },
                             {                
                                 date: '10/01/2020 15:50:00',
@@ -39,13 +40,17 @@ const app = new Vue(
                                 status: 'sent',
                                 colorChecked : 'blue',
                                 check : ' fas fa-check-double',
-                                openOption : 'false'            
+                                openOption : 'false',
+                                show : false
+
                             },
                             {                
                                 date: '10/01/2020 16:15:22',                
                                 text: 'Tutto fatto!',                
                                 status: 'received',
-                                openOption : 'false'            
+                                openOption : 'false',
+                                show : false
+
                             },
                         ],    
                     },
@@ -62,13 +67,15 @@ const app = new Vue(
                                     status: 'sent',
                                     colorChecked : 'blue',
                                     check : ' fas fa-check-double',
-                                    openOption : 'false'
+                                    openOption : 'false',
+                                    show : false
                                 },            
                                 {                
                                     date: '20/03/2020 16:30:55',                
                                     text: 'Bene grazie! Stasera ci vediamo?',                
                                     status: 'received',
-                                    openOption : 'false'            
+                                    openOption :'false',
+                                    show : false            
                                 },            
                                 {                
                                     date: '20/03/2020 16:35:00',                
@@ -76,7 +83,8 @@ const app = new Vue(
                                     status: 'sent',
                                     colorChecked : 'blue',
                                     check : ' fas fa-check-double',
-                                    openOption : 'false'            
+                                    openOption :'false',
+                                    show : false            
                                 }
                             ],
                     },
@@ -90,7 +98,8 @@ const app = new Vue(
                                 date: '11/01/2020 15:30:40',
                                 text: 'che fai?',
                                 status: 'received',
-                                openOption : 'false'
+                                openOption : 'false',
+                                show : false
          
                             },
                             {                
@@ -99,13 +108,15 @@ const app = new Vue(
                                 status: 'sent',
                                 colorChecked : 'blue',
                                 check : ' fas fa-check-double',
-                                openOption : 'false'            
+                                openOption : 'false',
+                                show : false            
                             },
                             {                
                                 date: '11/01/2020 16:15:22',                
                                 text: 'tante belle cose!',                
                                 status: 'received',
-                                openOption : 'false'
+                                openOption : 'false',
+                                show : false
                         
                             },
                         ],    
@@ -122,13 +133,15 @@ const app = new Vue(
                                 status: 'sent',
                                 colorChecked : 'blue',
                                 check : ' fas fa-check-double',
-                                openOption : 'false'            
+                                openOption : 'false',
+                                show : false            
                             },
                             {                
                                 date: '10/01/2020 15:50:00',
                                 text: 'dove',                
                                 status: 'received',
                                 openOption : 'false',
+                                show : false
           
                             },
                             {                
@@ -137,7 +150,8 @@ const app = new Vue(
                                 status: 'sent',
                                 colorChecked : 'blue',
                                 check : ' fas fa-check-double',
-                                openOption : 'false'              
+                                openOption : 'false',
+                                show : false              
                             },
                         ],    
                     },
@@ -151,14 +165,16 @@ const app = new Vue(
                                 date: '10/01/2020 15:30:55',
                                 text: 'usciamo?',
                                 status: 'sent',
-                                openOption : 'false'
+                                openOption : 'false',
+                                show : false
            
                             },
                             {                
                                 date: '10/01/2020 15:34:00',
                                 text: 'no',                
                                 status: 'receeived',
-                                openOption : 'false'
+                                openOption : 'false',
+                                show : false
           
                             },
                             {                
@@ -167,7 +183,8 @@ const app = new Vue(
                                 status: 'sent',
                                 colorChecked : 'blue',
                                 check : ' fas fa-check-double',
-                                openOption : 'false'             
+                                openOption : 'false',
+                                show : false             
                             },
                         ],    
                     },
@@ -185,14 +202,14 @@ const app = new Vue(
                     element.visible = false;
                     if(element.name.includes(valoreSearch) || element.name.includes(valoreCapitalize)) {
                         element.visible = true;
-                    }// } else {
-                    //     element.messages.forEach((messaggio)=> {
-                    //         if(messaggio.text.includes(valoreSearch) || messaggio.text.includes(valoreCapitalize)){
-                    //             element.visible = true
-                    //         }
-                    //     })
+                    }  // else {
+                    //      element.messages.forEach((messaggio)=> {
+                    //          if(messaggio.text.includes(valoreSearch) || messaggio.text.includes(valoreCapitalize)){
+                    //              element.visible = true
+                    //          }
+                    //      })
                         
-                    // }
+                    //  }
 
                 });
                 
@@ -222,7 +239,8 @@ const app = new Vue(
                         status: 'sent',
                         colorChecked: '',
                         check : ' fas fa-check',
-                        openOption : 'false'              
+                        openOption : 'false',
+                        show : false              
                     });
                     this.mex = '';
 
@@ -246,7 +264,8 @@ const app = new Vue(
                             date: "Oggi " + dayjs().format("HH:mm:ss"),                
                             text: this.answer[numRand],                
                             status: 'received',
-                            openOption : 'false'              
+                            openOption : 'false',
+                            show : false              
                         });
                         this.typing = false;
                     },2000);
@@ -281,14 +300,24 @@ const app = new Vue(
             hidePopup(){
                 this.contacts[this.index].messages.forEach((element) => {
                     element.openOption = false;
+                    element.show = false;
                 })
                 this.info = false;
             },
             cancella(indice){
                 this.contacts[this.index].messages.splice(indice,1); 
             },
-            getInfo(indice) {
+            getInfo() {
                 this.info = true;
+            },
+            showArrow(indice){
+                this.contacts[this.index].messages[indice].show = true;
+            },
+            hideArrow(indice) {
+                if(this.contacts[this.index].messages[indice].openOption == false) {
+                    this.contacts[this.index].messages[indice].show = false;
+                }
+
             }
             
         }

@@ -91,8 +91,11 @@
                     </header>
                     <!-- parte centrale conversazioni  -->
                     <div class="messages" id="container-messaggi" @click.stop="hidePopup" >
-                        <div class="messaggi" :class="(messaggi.status == 'sent') ? 'green' : 'white' " v-for="(messaggi,indice) in contacts[index].messages" @click.stop="opzioniMessaggio(messaggi,indice)">
-                            {{messaggi.text}}
+                        <div class="messaggi" :class="(messaggi.status == 'sent') ? 'green' : 'white' " v-for="(messaggi,indice) in contacts[index].messages" @click.stop="opzioniMessaggio(messaggi,indice)" @mouseover="showArrow(indice)" @mouseleave ="hideArrow(indice)" >
+                            <div class="messaggi-testo">{{messaggi.text}}</div>
+                            <div v-if="messaggi.show" class="arrow-down">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
                             <div class="data">
                                 {{messaggi.date}}
                                 <template v-if="(messaggi.status == 'sent')">
@@ -100,6 +103,7 @@
                                 </template>
 
                             </div>
+
                             <div :class="(messaggi.openOption == true) ?  'blocco_opzioni' : 'none' ">
                                 <ul v-if="(!info)" class="lista_message" >
                                     <li @click.stop="getInfo(indice)">Info Message </li>
