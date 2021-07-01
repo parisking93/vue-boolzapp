@@ -266,6 +266,7 @@ main .col-dx header {
 }
 .container-user-messages {
     background-color: #f3eee9;
+    position: relative;
 }
 .container-user-messages input {
     margin: 0 10px;
@@ -279,11 +280,29 @@ main .col-dx header {
     font-size: 18px;
     color: #80868a;
 }
+.block-emoji {
+    position: absolute;
+    top : -101px;
+    left: 1px;
+    height: 100px;
+    width: 100px;
+    background-color: #f3eee9;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    border-radius: 10px;
+}
+.container-emoji {
+    width: 33.33%;
+    text-align: center;
+}
 /* fine colonna di destra */
 /* FINE MAIN  */
 
 /* HOVER  */
-main i, .container-bell, .chat, .container-search,.messaggi {
+main i, .container-bell, .chat, .container-search,.messaggi, .container-emoji {
     cursor: pointer;
 }
 .lista_message li:hover{

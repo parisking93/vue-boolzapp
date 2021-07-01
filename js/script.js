@@ -189,7 +189,9 @@ const app = new Vue(
                         ],    
                     },
 
-                ]
+            ],
+            emoji : ['😃','😂','😉','😎','😓','😈','😍','😡','😏']
+            
         },
         methods : {
             // controllo quello che scrive nell'iput di ricerca e cerco 
@@ -219,7 +221,7 @@ const app = new Vue(
             chatta(indice){
                 this.index = indice;
                  let lunghezzaMessaggi =this.contacts[indice].messages.length;
-                 console.log(lunghezzaMessaggi);
+                 document.getElementById('insert-field').focus();
             },
             // controllo la lunghezza dell'input e se vuoto mostro tutte le chat 
             lunghezza() {
@@ -303,6 +305,9 @@ const app = new Vue(
                     element.show = false;
                 })
                 this.info = false;
+                setTimeout(()=>{
+                    document.querySelector('.block-emoji').style.display = "none";
+                },100);
             },
             cancella(indice){
                 this.contacts[this.index].messages.splice(indice,1); 
@@ -318,8 +323,17 @@ const app = new Vue(
                     this.contacts[this.index].messages[indice].show = false;
                 }
 
+            },
+            openEmoji(){
+                document.querySelector('.block-emoji').style.display = "flex";
+            },
+            emojInsert(indice) {
+                this.mex += this.emoji[indice];
+                document.getElementById('insert-field').focus();
+                setTimeout(()=>{
+                    document.querySelector('.block-emoji').style.display = "none";
+                },100);
             }
-            
         }
     });
 

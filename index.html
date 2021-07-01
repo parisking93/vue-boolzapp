@@ -119,9 +119,19 @@
                     </div>
                     <!-- input messaggi -->
                     <div class="container-user-messages">
-                        <i class="far fa-smile"></i>
-                        <input type="text" placeholder="Invia un messaggio" v-model="mex" @keyup.enter="inviaMessaggio()">
-                        <i class="fas fa-microphone"></i>
+                        <div @click="openEmoji">
+                            <i class="chiudi far fa-smile"></i>
+                            <div class="block-emoji">
+                                <div @click.stop ="emojInsert(numero)" class="container-emoji" v-for ="(emojii,numero) in emoji">
+                                    <span>{{emojii}}</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <input type="text" id="insert-field" placeholder="Invia un messaggio" v-model="mex" @keyup.enter="inviaMessaggio()">
+                        <div>
+                            <i class="fas fa-microphone"></i>
+                        </div>
                     </div>
                 </div>
             </div>
