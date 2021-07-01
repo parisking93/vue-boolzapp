@@ -65,7 +65,13 @@
                             <img id="user-foto" :src="contacts[index].avatar" :alt="contacts[index].name">
                             <div class="container-user-chat-name">
                                 <span id="chat-name-now">{{contacts[index].name}}</span>
-                                <template v-if="contacts[index].messages[contacts[index].messages.length -1].date.length == 19">
+                                <template v-if="typing">
+                                    <div class="container-typing">
+                                        <span class="access">is typing ... </span>
+                                    </div>
+                                    
+                                </template>
+                                <template v-else-if="contacts[index].messages[contacts[index].messages.length -1].date.length == 19">
                                     <p class="access" >ultimo accesso oggi alle 
                                         <span id="last-access"  >{{contacts[index].messages[contacts[index].messages.length -1].date.slice(10)}}</span>
                                     </p>

@@ -11,6 +11,7 @@ const app = new Vue(
             answer : ['ciao','come stai?','no','si'],
             incrementoScroll : 60,
             info : false,
+            typing : false,
             utente : {
                 name: 'Emmanuel', 
                 avatar: 'img/avatar_8.jpg'
@@ -222,17 +223,16 @@ const app = new Vue(
                         colorChecked: '',
                         check : ' fas fa-check',
                         openOption : 'false'              
-
                     });
                     this.mex = '';
 
                 
-                
+                    
                     setTimeout(()=>{
                         let messaggiLength = this.contacts[this.index].messages.length;
                         this.contacts[this.index].messages[messaggiLength - 1].check = ' fas fa-check-double';
                         this.contacts[this.index].messages[messaggiLength - 1].colorChecked = 'blue';
-
+                        this.typing = true;
                     },1000);
                     // scrollo la funzione all'ultimo mio messaggio 
                     setTimeout(() => {
@@ -248,6 +248,7 @@ const app = new Vue(
                             status: 'received',
                             openOption : 'false'              
                         });
+                        this.typing = false;
                     },2000);
                     // scrollo la funzione all'ultimo messaggio ricevuto
 

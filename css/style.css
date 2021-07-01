@@ -206,6 +206,7 @@ main .col-dx header {
     color: #80868a;
     font-size: 14px;
 }
+
 /* fine header colonna destra  */
 .col-dx .container-user-messages {
     height: 60px;
@@ -229,7 +230,7 @@ main .col-dx header {
     padding: 10px;
     position: relative;
 }
-.blocco_opzioni {
+.messages .messaggi .blocco_opzioni {
     top: 90%;
     left: 0;
     position: absolute;
@@ -239,14 +240,14 @@ main .col-dx header {
     border-radius: 10px;
     z-index: 1;
 }
-.lista_message {
+.messages .messaggi .lista_message {
     list-style: none;
 }
-.lista_message li {
+.messages .messaggi .lista_message li {
     margin: 10px 0;
     padding: 5px 20px;
 }
-.data {
+.messages .messaggi .data {
     color: #80868a;
     font-size: 12px;
     text-align: right;
