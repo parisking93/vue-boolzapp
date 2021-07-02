@@ -156,6 +156,7 @@ header .container-icon-user i, .container-icon-chat i{
     font-size: 12px;
 }
 
+
 .container_nome {
     width: 80%;
     margin-left: 10px;
@@ -164,10 +165,13 @@ header .container-icon-user i, .container-icon-chat i{
     font-weight: 700;
 }
 .last-message {
+    width: 70%;
     height: 16.5px;
     font-size: 14px;
     color: #8d9296;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .container-chat .chat img{
     height: 100%;
@@ -235,7 +239,8 @@ main .col-dx header {
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.3)
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.3);
+    overflow-wrap: break-word;
 }
 .messaggi .messaggi-testo {
     width: 90%;

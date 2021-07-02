@@ -339,7 +339,7 @@ const app = new Vue(
                 setTimeout(()=>{
                     document.querySelector('.block-emoji').style.display = "none";
                 },100);
-            }
+            },
         }
     });
 
